@@ -46,7 +46,7 @@ namespace timp_lab2
         public List<string> ReadStringsInMenuFile()
         {
             List<string> strings = new List<string>();
-            string path = "1.txt";
+            string path = "Data\\1.txt";
             string line;
 
             using (StreamReader sr = new StreamReader(path, true))
@@ -70,10 +70,10 @@ namespace timp_lab2
             {
                 items.Add(new MenuItem());
                 items[i].Header = names[i];
-                if (i > 0 && LevelNumbers[i] > LevelNumbers[i - 1])
-                {
-                    CreateSubitems(items, i, names, LevelNumbers);
-                }
+                // if (i > 0 && LevelNumbers[i] > LevelNumbers[i - 1])
+                // {
+                //     CreateSubitems(items, i, names, LevelNumbers);
+                // }
 
                 _menu.Items.Add(items[i]);
             }

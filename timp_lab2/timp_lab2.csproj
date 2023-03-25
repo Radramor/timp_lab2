@@ -9,9 +9,13 @@
 
   <ItemGroup>
     <None Remove="assets\authorize.png" />
-    <Resource Include="assets\authorize.png">
+    <Resource Include="Media\authorize.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <None Remove="Data\1.txt" />
+    <Content Include="Data\1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
