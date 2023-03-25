@@ -1,0 +1,23 @@
+﻿<Window x:Class="timp_lab2.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:timp_lab2"
+        mc:Ignorable="d"
+        Title="MenuWindow" Height="450" Width="800">
+    <Grid>
+        <DockPanel>
+            <Menu Name="_menu" DockPanel.Dock="Top" Foreground="Black" FontSize="14">
+                <MenuItem Header="File">
+                    <MenuItem Header="Open" Background="DimGray"/>
+                    <MenuItem Header="Close" Background="DimGray"/>
+                    <MenuItem Header="Save" Background="DimGray"/>
+                </MenuItem>
+            </Menu>
+            <StackPanel/>
+        </DockPanel>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="180,156,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+
+    </Grid>
+</Window>
