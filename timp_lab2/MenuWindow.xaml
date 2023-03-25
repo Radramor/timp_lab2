@@ -8,15 +8,9 @@
     <Grid>
         <DockPanel>
             <Menu Name="_menu" DockPanel.Dock="Top" Foreground="Black" FontSize="14">
-                <MenuItem Header="File">
-                    <MenuItem Header="Open" Background="DimGray"/>
-                    <MenuItem Header="Close" Background="DimGray"/>
-                    <MenuItem Header="Save" Background="DimGray"/>
-                </MenuItem>
+
             </Menu>
             <StackPanel/>
         </DockPanel>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="180,156,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-
     </Grid>
 </Window>

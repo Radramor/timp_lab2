@@ -12,6 +12,9 @@
     <Resource Include="Media\authorize.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Content Include="Data\Data.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Remove="Data\1.txt" />
     <Content Include="Data\1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

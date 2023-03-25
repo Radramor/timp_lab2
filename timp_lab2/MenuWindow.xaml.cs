@@ -1,130 +1,82 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.IO;
 
-namespace timp_lab2
+namespace timp_lab2;
+
+public partial class MenuWindow : Window
 {
-    /// <summary>
-    /// Логика взаимодействия для MenuWindow.xaml
-    /// </summary>
-    public partial class MenuWindow : Window
+    public MenuWindow( /*string path*/)
     {
+        InitializeComponent();
         
-        public MenuWindow(/*string path*/)
+        List<List<object>> dataList = ParseData("Data/Data.txt");
+        AddMenu(dataList);
+    }
+
+    private List<List<object>> ParseData(string filePath)
+    {
+        // Считывание данных из файла
+        var lines = File.ReadAllLines(filePath);
+
+        // Разбирает каждую строку и добавляет её в List
+        return (from line in lines
+            select Regex.Match(line, @"(\d+)\s+(.+)\s+(\d+)\s*(.*)")
+            into match
+            where match.Success
+                let num1 = int.Parse(match.Groups[1].Value)
+                let str1 = match.Groups[2].Value
+                let num2 = int.Parse(match.Groups[3].Value)
+                let str2 = match.Groups[4].Value
+            select new List<object> { num1, str1, num2, str2 }).ToList();
+    }
+
+    public void AddMenu(List<List<object>> dataList)
+    {
+        var parents = new Dictionary<int, MenuItem>();
+
+        foreach (var data in dataList)
         {
-            InitializeComponent();
-            //_menu.Items.Clear();
+            var level = (int)data[0];
+            var name = (string)data[1];
+            var visibility = (int)data[2];
+            var handler = (string)data[3];
 
-            List<string> strings = ReadStringsInMenuFile(/*path*/);
+            if (visibility == 2) continue; // Пропустить невидимые элементы
 
-            List<int> levelNumbers = SplitStringsOnNumbers(strings, 0);
+            var item = new MenuItem();
+            item.Header = name;
 
-            List<string> itemNames = SplitStringsOnWords(strings, 1);
-
-            //List<int> status = SplitStringsOnNumbers(strings, 2);
-
-            //List<string> methodsNames = SplitStringsOnWords(strings, 3);
-
-            AddMenu(itemNames, levelNumbers);
-
-            
-        }
-
-        
-        
-        public List<string> ReadStringsInMenuFile()
-        {
-            List<string> strings = new List<string>();
-            string path = "Data\\1.txt";
-            string line;
-
-            using (StreamReader sr = new StreamReader(path, true))
-            {
-                while (true)
+            if (handler != "") // Если есть обработчик, добавить событие клика
+                item.Click += (sender, e) =>
                 {
-                    line = sr.ReadLine();
-                    if (line == null) break;
-                    else strings.Add(line);
-                }
-            }
+                    MethodInfo? method = typeof(MenuWindow).GetMethod(handler);
+                    method?.Invoke(null, null);
+                };
 
-            return strings;
-        }
+            if (visibility == 1) // Если нужно выключить элемент
+                item.IsEnabled = false; // Выключить элемент
 
-        public void AddMenu(List<string> names, List<int> LevelNumbers) 
-        {
-            List<MenuItem> items = new List<MenuItem>();
-
-            for (int i = 0; i < names.Count; i++)
+            if (level == 0) // Элемент верхнего уровня
             {
-                items.Add(new MenuItem());
-                items[i].Header = names[i];
-                // if (i > 0 && LevelNumbers[i] > LevelNumbers[i - 1])
-                // {
-                //     CreateSubitems(items, i, names, LevelNumbers);
-                // }
-
-                _menu.Items.Add(items[i]);
+                _menu.Items.Add(item);
+                parents[level] = item;
             }
-
-            /*items.Add(new MenuItem());
-            items[0].Header = names[0];
-            items.Add(new MenuItem());
-            items[1].Header = names[1];
-            items.Add(new MenuItem());
-            items[2].Header = names[2];
-            items.Add(new MenuItem());
-            items[3].Header = names[3];
-
-            items[2].Items.Add(items[3]);
-            items[1].Items.Add(items[2]);
-            items[0].Items.Add(items[1]);
-            _menu.Items.Add(items[0]);*/
-        }
-
-        public MenuItem CreateSubitems(List<MenuItem> items, int i, List<string> names, List<int> LevelNumbers)
-        {
-            items[i - 1].Items.Add(items[i]);
-            return items[i];
-        }
-
-        public List<string> SplitStringsOnWords(List<string> strings, int N)
-        {
-            List<string> words = new List<string>();
-            string[] wordsInStr;
-            foreach (string str in strings)
+            else // Подпункт
             {
-                wordsInStr = str.Split(" ");
-                words.Add(wordsInStr[N]);
+                var parent = parents[level - 1];
+                parent.Items.Add(item);
+                parents[level] = item;
             }
-            return words;
         }
+    }
 
-        public List<int> SplitStringsOnNumbers(List<string> strings, int N)
-        {
-            string[] wordsInStr;
-            List<int> LevelNumbers = new List<int>();
-            foreach (string str in strings)
-            {
-                wordsInStr = str.Split(" ");
-                LevelNumbers.Add(int.Parse(wordsInStr[N]));
-            }
-            return LevelNumbers;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {       
-        }
+    public static void Stuff()
+    {
+        MessageBox.Show("Hello world!", "Fuck");
     }
 }
