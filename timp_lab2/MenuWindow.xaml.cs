@@ -66,18 +66,19 @@ namespace timp_lab2
         {
             List<MenuItem> items = new List<MenuItem>();
 
-            /*for (int i = 0; i < names.Count; i++)
+            for (int i = 0; i < names.Count; i++)
             {
                 items.Add(new MenuItem());
                 items[i].Header = names[i];
-                *//*if(i > 0 && LevelNumbers[i] > LevelNumbers[i-1])
+                /*if (i > 0 && LevelNumbers[i] > LevelNumbers[i - 1])
                 {
                     items[i - 1] = CreateSubitems(items, i, names, LevelNumbers);
-                }*//*
+                }*/
 
                 _menu.Items.Add(items[i]);
-            }*/
-            items.Add(new MenuItem());
+            }
+
+            /*items.Add(new MenuItem());
             items[0].Header = names[0];
             items.Add(new MenuItem());
             items[1].Header = names[1];
@@ -89,7 +90,7 @@ namespace timp_lab2
             items[2].Items.Add(items[3]);
             items[1].Items.Add(items[2]);
             items[0].Items.Add(items[1]);
-            _menu.Items.Add(items[0]);
+            _menu.Items.Add(items[0]);*/
         }
 
         public MenuItem CreateSubitems(List<MenuItem> items, int i, List<string> names, List<int> LevelNumbers)
@@ -123,21 +124,7 @@ namespace timp_lab2
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            _menu.Items.Clear();
-
-            List<string> strings = ReadStringsInMenuFile();
-
-            MenuItem item = new MenuItem();
-            item.Header = "Опция";
-            MenuItem item2 = new MenuItem();
-            item2.Header = "";
-            MenuItem item3 = new MenuItem();
-            item3.Header = names[2];
-
-            List<int> LevelNumbers = SplitStringsOnNumbers(strings, 0);
-
-            AddMenu(itemNames);
+        {       
         }
     }
 }

@@ -29,16 +29,8 @@ namespace timp_lab2
             InitializeComponent();
         }
 
-        private void Button1_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Menu menu = new Menu();
-            authorization.Show();
-            this.Close();
-        }
-
-        private void Button2_Click(object sender, RoutedEventArgs e)
-        {
-            Menu menu = new Menu();
             authorization.Show();
             this.Close();
         }
