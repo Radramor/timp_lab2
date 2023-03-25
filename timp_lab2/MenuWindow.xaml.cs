@@ -51,11 +51,11 @@ public partial class MenuWindow : Window
             var item = new MenuItem();
             item.Header = name;
 
-            if (handler != "") // Если есть обработчик, добавить событие клика
+            if (handler != "") // Если есть обработчик, добавить событие клика TODO: если там обработчик и дальше есть ниже иерархия, то кинуть ошибку
                 item.Click += (sender, e) =>
                 {
-                    MethodInfo? method = typeof(MenuWindow).GetMethod(handler);
-                    method?.Invoke(null, null);
+                    MethodInfo? method = typeof(MenuWindow).GetMethod(handler); //TODO: можно попарсить ошибки в data.txt
+                    method?.Invoke(null, null); //TODO: if (method == null) {
                 };
 
             if (visibility == 1) // Если нужно выключить элемент
