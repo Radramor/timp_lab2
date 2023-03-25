@@ -19,11 +19,11 @@ namespace timp_lab2
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Authorization : Window
     {
-        Window menuWindow = new MenuWindow();
+        Window authorization = new MenuWindow();
         
-        public MainWindow()
+        public Authorization()
         {
             
             InitializeComponent();
@@ -32,14 +32,14 @@ namespace timp_lab2
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
             Menu menu = new Menu();
-            menuWindow.Show();
+            authorization.Show();
             this.Close();
         }
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
             Menu menu = new Menu();
-            menuWindow.Show();
+            authorization.Show();
             this.Close();
         }
     }

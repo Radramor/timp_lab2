@@ -46,7 +46,7 @@ namespace timp_lab2
             MenuItem item = new MenuItem();
             item.Header = "Опция";
             MenuItem item2 = new MenuItem();
-            item2.Header = ";
+            item2.Header = "";
             MenuItem item3 = new MenuItem();
             item3.Header = names[2];
 
