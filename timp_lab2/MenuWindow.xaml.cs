@@ -21,27 +21,71 @@ namespace timp_lab2
     public partial class MenuWindow : Window
     {
         
-
         public MenuWindow()
         {
             InitializeComponent();
         }
 
-        public List<string> names = new List<string>();
+        public List<MenuItem> items = new List<MenuItem>();
         
+        public List<string> ReadStringsInMenuFile()
+        {
+            List<string> names = new List<string>();
+            string path = "1.txt";
+            string line;
+
+            using (StreamReader sr = new StreamReader(path, true))
+            {
+                while (true)
+                {
+                    line = sr.ReadLine();
+                    if (line == null) break;
+                    else names.Add(line);
+                }
+            }
+
+            return names;
+        }
+
+        public void AddMenu(List<string> names) 
+        {
+            for (int i = 0; i < names.Count; i++)
+            {
+                items.Add(new MenuItem());
+                items[i].Header = names[i];
+                _menu.Items.Add(items[i]);
+            }
+        }
+
+        public List<string> SplitStringsOnWords(List<string> strings, int N)
+        {
+            List<string> words = new List<string>();
+            string[] wordsInStr;
+            foreach (string str in strings)
+            {
+                wordsInStr = str.Split(" ");
+                words.Add(wordsInStr[N]);
+            }
+            return words;
+        }
+
+        public List<int> SplitStringsOnNumbers(List<string> strings, int N)
+        {
+            string[] wordsInStr;
+            List<int> LevelNumbers = new List<int>();
+            foreach (string str in strings)
+            {
+                wordsInStr = str.Split(" ");
+                LevelNumbers.Add(int.Parse(wordsInStr[N]));
+            }
+            return LevelNumbers;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            _menu.Items.Clear();
 
-            string path = "1.txt";
-            /*using(StreamReader sr = new StreamReader(path, true)
-            {
-                string line = sr.ReadLine();
-                while (line != null)
-                {                   
-                    names.Add(line);
-                    line = sr.ReadLine();
-                }
-            }*/
+            List<string> strings = ReadStringsInMenuFile();
 
             MenuItem item = new MenuItem();
             item.Header = "Опция";
@@ -50,12 +94,9 @@ namespace timp_lab2
             MenuItem item3 = new MenuItem();
             item3.Header = names[2];
 
-            item2.Items.Add(item3);
-            item.Items.Add(item2);
-        
-            _menu.Items.Add(item);
-            //item.Items.Add(item.Header);
-            //_menu.File;
+            List<int> LevelNumbers = SplitStringsOnNumbers(strings, 0);
+
+            AddMenu(itemNames);
         }
     }
 }
