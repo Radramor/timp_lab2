@@ -70,10 +70,10 @@ namespace timp_lab2
             {
                 items.Add(new MenuItem());
                 items[i].Header = names[i];
-                /*if (i > 0 && LevelNumbers[i] > LevelNumbers[i - 1])
+                if (i > 0 && LevelNumbers[i] > LevelNumbers[i - 1])
                 {
-                    items[i - 1] = CreateSubitems(items, i, names, LevelNumbers);
-                }*/
+                    CreateSubitems(items, i, names, LevelNumbers);
+                }
 
                 _menu.Items.Add(items[i]);
             }
