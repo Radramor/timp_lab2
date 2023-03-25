@@ -21,16 +21,31 @@ namespace timp_lab2
     public partial class MenuWindow : Window
     {
         
-        public MenuWindow()
+        public MenuWindow(/*string path*/)
         {
             InitializeComponent();
+            //_menu.Items.Clear();
+
+            List<string> strings = ReadStringsInMenuFile(/*path*/);
+
+            List<int> levelNumbers = SplitStringsOnNumbers(strings, 0);
+
+            List<string> itemNames = SplitStringsOnWords(strings, 1);
+
+            //List<int> status = SplitStringsOnNumbers(strings, 2);
+
+            //List<string> methodsNames = SplitStringsOnWords(strings, 3);
+
+            AddMenu(itemNames, levelNumbers);
+
+            
         }
 
-        public List<MenuItem> items = new List<MenuItem>();
+        
         
         public List<string> ReadStringsInMenuFile()
         {
-            List<string> names = new List<string>();
+            List<string> strings = new List<string>();
             string path = "1.txt";
             string line;
 
@@ -40,21 +55,47 @@ namespace timp_lab2
                 {
                     line = sr.ReadLine();
                     if (line == null) break;
-                    else names.Add(line);
+                    else strings.Add(line);
                 }
             }
 
-            return names;
+            return strings;
         }
 
-        public void AddMenu(List<string> names) 
+        public void AddMenu(List<string> names, List<int> LevelNumbers) 
         {
-            for (int i = 0; i < names.Count; i++)
+            List<MenuItem> items = new List<MenuItem>();
+
+            /*for (int i = 0; i < names.Count; i++)
             {
                 items.Add(new MenuItem());
                 items[i].Header = names[i];
+                *//*if(i > 0 && LevelNumbers[i] > LevelNumbers[i-1])
+                {
+                    items[i - 1] = CreateSubitems(items, i, names, LevelNumbers);
+                }*//*
+
                 _menu.Items.Add(items[i]);
-            }
+            }*/
+            items.Add(new MenuItem());
+            items[0].Header = names[0];
+            items.Add(new MenuItem());
+            items[1].Header = names[1];
+            items.Add(new MenuItem());
+            items[2].Header = names[2];
+            items.Add(new MenuItem());
+            items[3].Header = names[3];
+
+            items[2].Items.Add(items[3]);
+            items[1].Items.Add(items[2]);
+            items[0].Items.Add(items[1]);
+            _menu.Items.Add(items[0]);
+        }
+
+        public MenuItem CreateSubitems(List<MenuItem> items, int i, List<string> names, List<int> LevelNumbers)
+        {
+            items[i - 1].Items.Add(items[i]);
+            return items[i];
         }
 
         public List<string> SplitStringsOnWords(List<string> strings, int N)
