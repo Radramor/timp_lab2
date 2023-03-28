@@ -12,7 +12,7 @@ public static class DeserializeMenuData
     {
         // Считывание данных из файла
         var lines = File.ReadAllLines(filePath);
-        
+
         // Разбирает каждую строку и добавляет её в List
         var dataList = (from line in lines
             select Regex.Match(line, @"(\d+)\s+(.+)\s+(\d+)\s*(.*)")
@@ -23,10 +23,10 @@ public static class DeserializeMenuData
             let num2 = int.Parse(match.Groups[3].Value)
             let str2 = match.Groups[4].Value
             select new List<object> { num1, str1, num2, str2 }).ToList();
-        
+
         if (dataList.Count != lines.Length)
-            throw new DataException($"{lines.Length-dataList.Count} lines of data are corrupted");
-        
+            throw new DataException($"{lines.Length - dataList.Count} lines of data are corrupted");
+
         return dataList;
     }
 }

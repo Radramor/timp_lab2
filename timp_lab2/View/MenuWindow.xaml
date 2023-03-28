@@ -5,15 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MenuWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+
+
     <Grid>
         <Grid.Background>
-            <SolidColorBrush Color="{DynamicResource _Light2}"/>
+            <SolidColorBrush Color="{DynamicResource _Light2}" />
         </Grid.Background>
         <DockPanel>
-            <Menu Name="_menu" DockPanel.Dock="Top" Foreground="Black" FontSize="14">
-
+            <Menu DockPanel.Dock="Top" Foreground="Black" FontSize="14" ItemsSource="{Binding MenuItems}">
+                <Menu.Resources>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Command" Value="{Binding Command}" />
+                        <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
+                        <Setter Property="ItemsSource" Value="{Binding Children}" />
+                        <Setter Property="Header" Value="{Binding Name}" />
+                    </Style>
+                </Menu.Resources>
             </Menu>
-            <StackPanel/>
+            <StackPanel />
         </DockPanel>
     </Grid>
 </Window>

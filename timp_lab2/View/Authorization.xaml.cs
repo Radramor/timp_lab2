@@ -4,11 +4,10 @@ using timp_lab2.ViewModel;
 
 namespace timp_lab2;
 
-
 public partial class Authorization
 {
-
     private readonly AuthorizationViewModel _viewModel;
+
     public Authorization()
     {
         InitializeComponent();
@@ -20,8 +19,8 @@ public partial class Authorization
         try
         {
             var menuDataPath = _viewModel.TryToEnter(LoginBox.Text, PasswordBox.Password);
-            
-            var menuWindow = new MenuWindow(menuDataPath);
+            var menuViewModel = new MenuViewModel(menuDataPath);
+            var menuWindow = new MenuWindow(menuViewModel);
             menuWindow.Show();
             Close();
         }
