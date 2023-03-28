@@ -25,7 +25,7 @@ public static class DeserializeMenuData
             select new List<object> { num1, str1, num2, str2 }).ToList();
         
         if (dataList.Count != lines.Length)
-            throw new DataException($"{dataList.Count-lines.Length} lines of data are corrupted");
+            throw new DataException($"{lines.Length-dataList.Count} lines of data are corrupted");
         
         return dataList;
     }

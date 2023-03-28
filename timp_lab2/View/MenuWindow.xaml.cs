@@ -12,11 +12,14 @@ namespace timp_lab2;
 
 public partial class MenuWindow
 {
-    public MenuWindow()
+    private readonly string _menuDataPath;
+    
+    public MenuWindow(string menuDataPath)
     {
+        _menuDataPath = menuDataPath;
         InitializeComponent();
 
-        var dataList = DeserializeMenuData.ParseData("Assets/Data.txt");
+        var dataList = DeserializeMenuData.ParseData(string.Concat("Data/", _menuDataPath));
         AddMenu(dataList);
     }
 

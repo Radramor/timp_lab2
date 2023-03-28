@@ -20,9 +20,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Data\AdminData.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Data.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Remove="Data\Authorize.txt" />
+    <Content Include="Data\Authorize.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="8.0.0-preview.2.23153.2" />
   </ItemGroup>
 
 </Project>
