@@ -1,10 +1,7 @@
-using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace timp_lab2.Domain;
+namespace MenuItem.Domain;
 
 public static class DeserializeMenuData
 {

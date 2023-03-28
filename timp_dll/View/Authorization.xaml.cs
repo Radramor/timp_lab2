@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows;
+using MenuItem;
 using timp_lab2.ViewModel;
 
-namespace timp_lab2;
+namespace timp_lab2.View;
 
 public partial class Authorization
 {
@@ -19,7 +20,7 @@ public partial class Authorization
         try
         {
             var menuDataPath = _viewModel.TryToEnter(LoginBox.Text, PasswordBox.Password);
-            var menuViewModel = new MenuViewModel(menuDataPath);
+            var menuViewModel = new MenuViewModel(menuDataPath!, typeof(MenuWindow));
             var menuWindow = new MenuWindow(menuViewModel);
             menuWindow.Show();
             Close();

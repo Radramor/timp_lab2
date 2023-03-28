@@ -1,17 +1,18 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using MenuItem.Domain;
 using ReactiveUI;
-using timp_lab2.Domain;
 
-namespace timp_lab2.ViewModel;
+namespace MenuItem;
 
 public class MenuViewModel : ReactiveObject
 {
     public ObservableCollection<MenuItemViewModel> MenuItems { get; }
+    private Type _viewType { get; }
 
-    public MenuViewModel(string menuDataPath)
+    public MenuViewModel(string menuDataPath, Type viewtype)
     {
+        _viewType = viewtype;
         MenuItems = new ObservableCollection<MenuItemViewModel>();
         var dataList = DeserializeMenuData.ParseData(string.Concat("Data/", menuDataPath));
         AddMenu(dataList);
@@ -36,9 +37,9 @@ public class MenuViewModel : ReactiveObject
                 IsEnabled = visibility != 1
             };
 
-            if (handler != "") // Если есть обработчик, добавить событие клика 
+            if (handler != "") // If there is a handler, add a click event 
             {
-                var method = typeof(MenuWindow).GetMethod(handler);
+                var method = _viewType.GetMethod(handler);
                 if (method == null)
                     throw new DataException($"Handler {handler} not found for {name}");
 

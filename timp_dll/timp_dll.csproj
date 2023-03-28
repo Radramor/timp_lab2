@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <RootNamespace>timp_lab2</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,10 +14,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <None Remove="Data\1.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Assets" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +32,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="8.0.0-preview.2.23153.2" />
     <PackageReference Include="ReactiveUI.WPF" Version="18.4.26" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FreeAuthorization\FreeAuthorization.csproj" />
+    <ProjectReference Include="..\MenuItem\MenuItem.csproj" />
   </ItemGroup>
 
 </Project>

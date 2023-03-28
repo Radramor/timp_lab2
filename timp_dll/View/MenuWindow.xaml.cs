@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using timp_lab2.ViewModel;
+using MenuItem;
 
-namespace timp_lab2;
+namespace timp_lab2.View;
 
 public partial class MenuWindow
 {
