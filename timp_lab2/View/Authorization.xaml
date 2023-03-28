@@ -66,7 +66,7 @@
             </TextBlock.Foreground><Run Language="ru-ru" Text="Введите имя пользователя и пароль"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Height="24" Margin="0,166,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" FontFamily="Bahnschrift" FontStretch="SemiCondensed" FontSize="18.5" TextAlignment="Right"><Run Language="ru-ru" Text="Имя пользователя "/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Height="24" Margin="0,205,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" FontFamily="Bahnschrift" FontStretch="SemiCondensed" FontSize="18.5" TextAlignment="Right"><Run Language="ru-ru" Text="Пароль "/></TextBlock>
-        <TextBox Name="LoginText" HorizontalAlignment="Left" Height="20" Margin="164,168,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontFamily="Bahnschrift" FontSize="14">
+        <TextBox Name="LoginBox" HorizontalAlignment="Left" Height="20" Margin="164,168,20,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" FontFamily="Bahnschrift" FontSize="14">
             <TextBox.Foreground>
                 <SolidColorBrush Color="{DynamicResource _Light5}"/>
             </TextBox.Foreground>
@@ -74,8 +74,8 @@
                 <SolidColorBrush Color="{DynamicResource _Light1}"/>
             </TextBox.Background>
         </TextBox>
-        <PasswordBox Name="PasswordText" HorizontalAlignment="Left" Height="20" Margin="164,207,20,0" VerticalAlignment="Top" Width="216"/>
-        <Button Name="EntryButton" Content="Вход" HorizontalAlignment="Right" Click="EntryButton_OnClick" Height="24" VerticalAlignment="Bottom" Width="95" Margin="0,20,20,14" FontFamily="Bahnschrift" FontSize="14">
+        <PasswordBox Name="PasswordBox" HorizontalAlignment="Left" Height="20" Margin="164,207,20,0" VerticalAlignment="Top" Width="216"/>
+        <Button Content="Вход" HorizontalAlignment="Right" Click="TryToEnter" Height="24" VerticalAlignment="Bottom" Width="95" Margin="0,20,20,14" FontFamily="Bahnschrift" FontSize="14">
             <Button.Foreground>
                 <SolidColorBrush Color="{DynamicResource _Light5}"/>
             </Button.Foreground>
